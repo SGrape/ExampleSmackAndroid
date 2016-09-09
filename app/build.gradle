@@ -1,0 +1,63 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        config {
+            keyAlias 'config'
+            keyPassword 'College@13'
+        }
+    }
+    compileSdkVersion 24
+    buildToolsVersion "24.0.1"
+    testOptions {
+        //unitTests.returnDefaultValues = true;
+    }
+    lintOptions {
+        // set to true to turn off analysis progress reporting by lint
+        quiet true
+        // if true, stop the gradle build if errors are found
+        abortOnError false
+        // if true, only report errors
+        ignoreWarnings true
+    }
+    defaultConfig {
+        applicationId "com.example.smack"
+        minSdkVersion 16
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            debuggable true
+        }
+    }
+}
+
+
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:24.2.0'
+    compile 'com.android.support:design:24.2.0'
+    testCompile 'com.android.support:support-annotations:24.2.0'
+    testCompile 'com.android.support.test:runner:0.5'
+    testCompile 'com.android.support.test:rules:0.5'
+    /*
+        // Espresso core
+        androidTestCompile ('com.android.support.test.espresso:espresso-core:2.2.2', {
+            exclude group: 'com.android.support', module: 'support-annotations'
+        })
+    */
+    compile 'co.devcenter.square:android-ui-library:0.1'
+    compile 'org.igniterealtime.smack:smack-android-extensions:4.1.8'
+    compile 'org.igniterealtime.smack:smack-tcp:4.1.8'
+    compile 'org.igniterealtime.smack:smack-android:4.1.8'
+    compile 'eu.geekplace.javapinning:java-pinning-jar:1.0.1'
+}
