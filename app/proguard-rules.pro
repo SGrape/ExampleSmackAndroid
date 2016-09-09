@@ -15,3 +15,7 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+-keep class org.jivesoftware.smack.** { *; }
+-keep class org.jivesoftware.smack.chat
+-keep class com.example.smack.MemorizingTrustManager.** { *; }
+-keepattributes *Annotation*,EnclosingMethod,Signature
