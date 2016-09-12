@@ -37,8 +37,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             this.startActivity(new Intent(this, ChatActivity.class));
         }
 
-
-
         edPW = (EditText)this.findViewById(R.id.ed_password);
         edJID = (EditText)this.findViewById(R.id.ed_jid);
 

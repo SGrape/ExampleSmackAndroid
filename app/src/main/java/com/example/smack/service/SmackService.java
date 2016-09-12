@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
-//import android.util.Log;
+import android.os.Binder;
 
 import org.jivesoftware.smack.SmackException;
 import org.jivesoftware.smack.XMPPException;
@@ -27,6 +27,8 @@ public class SmackService extends Service {
     public static final String BUNDLE_ROSTER = "b_body";
     public static final String BUNDLE_TO = "b_to";
 
+    private IBinder binder;
+
     public static SmackConnection.ConnectionState sConnectionState;
 
     public static SmackConnection.ConnectionState getState() {
@@ -42,6 +44,7 @@ public class SmackService extends Service {
     private SmackConnection mConnection;
 
     public SmackService() {
+        this.binder = new MyBinder();
     }
 
     @Override
@@ -51,7 +54,13 @@ public class SmackService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-        return null;
+        return binder;
+    }
+
+    public class MyBinder extends Binder {
+        public SmackService getService() {
+            return SmackService.this;
+        }
     }
 
     @Override
@@ -65,6 +74,10 @@ public class SmackService extends Service {
     public void onDestroy() {
         super.onDestroy();
         stop();
+    }
+
+    public boolean getActive(){
+        return mActive;
     }
 
     private void start() {

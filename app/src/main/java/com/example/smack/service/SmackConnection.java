@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.net.ssl.SSLContext;
-//import eu.geekplace.javapinning.JavaPinning;
+import eu.geekplace.javapinning.JavaPinning;
 import com.example.smack.MemorizingTrustManager.MemorizingTrustManager;
 import javax.net.ssl.X509TrustManager;
 
@@ -95,8 +95,8 @@ public class SmackConnection implements ConnectionListener, ChatManagerListener,
         builder.setSecurityMode(ConnectionConfiguration.SecurityMode.required);
         builder.setCompressionEnabled(true);
 
-        //X509TrustManager pinning = JavaPinning.trustManagerForPin("CERTSHA256:8A:C6:6A:44:3B:92:08:62:D5:19:54:EC:38:C2:41:B8:65:A8:E9:DE:E8:F1:08:46:82:EC:C8:ED:36:82:CE:96");
-        MemorizingTrustManager mtm  = new MemorizingTrustManager(mApplicationContext);
+        X509TrustManager pinning = JavaPinning.trustManagerForPin("CERTSHA256:8A:C6:6A:44:3B:92:08:62:D5:19:54:EC:38:C2:41:B8:65:A8:E9:DE:E8:F1:08:46:82:EC:C8:ED:36:82:CE:96");
+        MemorizingTrustManager mtm  = new MemorizingTrustManager(mApplicationContext,pinning);
         try {
             //SSLContext sc = JavaPinning.forPin("CERTSHA256:8A:C6:6A:44:3B:92:08:62:D5:19:54:EC:38:C2:41:B8:65:A8:E9:DE:E8:F1:08:46:82:EC:C8:ED:36:82:CE:96");
             SSLContext sc = SSLContext.getInstance("TLS");
